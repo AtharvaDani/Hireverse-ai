@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+:root {
+  /* Color tokens - ivory paper + deep teal direction */
+  --ink: #2B2420;
+  --ink-soft: #6B5A3C;
+  --paper: #FBF6EF;
+  --paper-raised: #FFFDF9;
+  --paper-line: #E8DCC8;
+
+  --gold: #3D7A6E;
+  --gold-deep: #2A5A50;
+  --gold-soft: #DCEEE8;
+
+  --teal: #2A5A50;
+  --teal-soft: #DCEEE8;
+  --teal-line: #BFDDD3;
+
+  --plum: #6B5A3C;
+  --plum-soft: #EFE6D4;
+  --plum-line: #E0D2B4;
+
+  --clay: #B5562F;
+  --clay-soft: #F5E0D5;
+
+  --sage: #3D7A6E;
+  --sage-soft: #DCEEE8;
+
+  --muted: #8A7A5C;
+
+  /* Type tokens */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Shape */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --shadow-card: 0 1px 2px rgba(43,36,32,0.05), 0 6px 20px rgba(43,36,32,0.07);
+  --shadow-raised: 0 4px 18px rgba(43,36,32,0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(43,36,32,0.05) 1px, transparent 0);
+  background-size: 22px 22px;
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--gold-soft);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

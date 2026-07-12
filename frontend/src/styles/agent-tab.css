@@ -1,0 +1,217 @@
+.agent-tab-card {
+  padding: 26px;
+  background: var(--paper-raised);
+  border: 1px solid var(--paper-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease;
+}
+
+.agent-tab-card:hover {
+  box-shadow: 0 4px 24px rgba(22, 27, 46, 0.1);
+}
+
+.agent-tab-card-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--teal), var(--plum));
+}
+
+.agent-tab-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+.agent-tab-description {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 18px;
+  max-width: 480px;
+}
+
+.agent-tab-textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--paper-line);
+  background: var(--paper);
+  font-size: 13.5px;
+  font-family: var(--font-body);
+  resize: vertical;
+  margin-bottom: 14px;
+}
+
+.agent-tab-textarea:focus {
+  border-color: var(--gold);
+}
+
+.agent-tab-button {
+  padding: 12px 24px;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  box-shadow: 0 3px 10px rgba(217, 164, 65, 0.35);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+}
+
+.agent-tab-button:hover:not(:disabled) {
+  background: var(--gold-deep);
+  color: var(--paper);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(217, 164, 65, 0.4);
+}
+
+.agent-tab-button:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.agent-tab-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.spinner-dark {
+  border: 2px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  border-top-color: var(--ink);
+}
+
+.agent-tab-error {
+  font-size: 13.5px;
+  color: var(--clay);
+  margin: 14px 0 0;
+}
+
+.agent-tab-skeleton {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--paper-line) 25%, var(--paper) 50%, var(--paper-line) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.agent-tab-result {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--paper-line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  animation: rise 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.agent-tab-result-text {
+  align-self: stretch;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  color: var(--ink);
+}
+
+/* Signature element: the score gauge */
+.score-gauge {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.score-gauge-arc {
+  transition: stroke-dashoffset 1s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: draw-in 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.score-gauge-number {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.score-gauge-label {
+  position: absolute;
+  bottom: -24px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.breakdown-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.breakdown-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  min-width: 76px;
+}
+
+.breakdown-chip-num {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.breakdown-chip-label {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.chip-gold { background: var(--gold-soft); color: var(--gold-deep); }
+.chip-teal { background: var(--teal-soft); color: var(--teal); }
+.chip-clay { background: var(--clay-soft); color: var(--clay); }
+.chip-plum { background: var(--plum-soft); color: var(--plum); }
+
+@keyframes draw-in {
+  from { stroke-dashoffset: 351.9; }
+}

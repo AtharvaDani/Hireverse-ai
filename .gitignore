@@ -1,0 +1,22 @@
+# Environment files
+.env
+.env.local
+.env.production
+
+# Keep template
+!.env.example
+
+# Java
+target/
+
+# Node
+node_modules/
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

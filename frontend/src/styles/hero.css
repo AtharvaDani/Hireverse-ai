@@ -1,0 +1,136 @@
+/* ============================================================
+   HERO SCREEN (shown before a resume is uploaded)
+   This was previously unstyled - .hero-screen, .hero-copy,
+   .hero-feature-list etc. had no CSS rules at all, so text
+   inherited default/ambient styles and washed out against the
+   bright gradient background. This file gives it real,
+   high-contrast styling.
+   ============================================================ */
+
+.hero-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 20px 80px;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* The eyebrow / pill label */
+.hero-copy .app-header-mark,
+.app-header-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: var(--paper-raised);
+  border: 1px solid var(--paper-line);
+  color: var(--ink-soft) !important;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  box-shadow: var(--depth-shadow-1, 0 2px 8px rgba(22,27,46,0.06));
+}
+
+.hero-copy .app-header-mark::before,
+.app-header-mark::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(217, 164, 65, 0.6);
+}
+
+/* Headline - solid, fully opaque ink color, no inherited fade */
+.hero-copy .app-title,
+.app-title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 6vw, 52px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink) !important;
+  opacity: 1 !important;
+}
+
+.hero-copy .app-title em,
+.app-title em {
+  font-style: italic;
+  color: var(--gold-deep) !important;
+  opacity: 1 !important;
+}
+
+/* Subtitle - readable ink-soft, never faint */
+.hero-copy .app-subtitle,
+.app-subtitle {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--ink-soft) !important;
+  opacity: 1 !important;
+  max-width: 520px;
+  margin: 0;
+}
+
+/* Feature list */
+.hero-feature-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.hero-feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink) !important;
+  opacity: 1 !important;
+}
+
+.hero-feature-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--gold-soft);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* Upload panel wrapper */
+.hero-upload {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Guard against any ambient low-opacity/blur leaking onto hero text from
+   other stylesheets loaded after this one. */
+.hero-screen, .hero-screen * {
+  filter: none;
+}
+
+.hero-screen h1, .hero-screen p, .hero-screen li {
+  -webkit-text-fill-color: currentColor;
+  text-shadow: none;
+}

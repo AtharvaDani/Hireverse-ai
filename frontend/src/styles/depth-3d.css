@@ -1,0 +1,161 @@
+/* ============================================================
+   3D / DEPTH / BRIGHTNESS PASS
+   Pure visual layer - adds dimensionality and brightness on top
+   of existing components. No logic, no markup changes required
+   beyond optionally adding the class names below.
+   ============================================================ */
+
+:root {
+  --depth-shadow-1: 0 1px 0 rgba(255,255,255,0.6) inset, 0 1px 2px rgba(22,27,46,0.04), 0 8px 24px rgba(22,27,46,0.08);
+  --depth-shadow-2: 0 1px 0 rgba(255,255,255,0.7) inset, 0 2px 4px rgba(22,27,46,0.06), 0 16px 40px rgba(22,27,46,0.14);
+  --depth-shadow-hover: 0 1px 0 rgba(255,255,255,0.8) inset, 0 4px 8px rgba(22,27,46,0.08), 0 24px 56px rgba(22,27,46,0.18);
+  --glow-gold: 0 0 0 1px rgba(61,122,110,0.25), 0 8px 28px rgba(61,122,110,0.28);
+  --glow-teal: 0 0 0 1px rgba(47,107,94,0.22), 0 8px 24px rgba(47,107,94,0.22);
+  --glow-plum: 0 0 0 1px rgba(91,75,138,0.22), 0 8px 24px rgba(91,75,138,0.22);
+}
+
+/* Brighten the base canvas - ivory paper, teal glow */
+html, body {
+  background-color: #FDFAF3;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(43,36,32,0.055) 1px, transparent 0),
+    radial-gradient(ellipse 1200px 600px at 50% -10%, rgba(61,122,110,0.14), transparent 60%);
+  background-size: 22px 22px, 100% 100%;
+  background-attachment: fixed, fixed;
+}
+
+/* ---------- Universal 3D card treatment ---------- */
+/* Apply by adding class="card-3d" to any card-like container, or this
+   targets the existing card classes directly so no markup change is
+   strictly required. */
+.upload-card,
+.report-card,
+.agent-tab-card,
+.mock-interview-card,
+.job-search-card,
+.card-3d {
+  background: linear-gradient(165deg, #FFFFFF 0%, #FBF9F4 100%);
+  box-shadow: var(--depth-shadow-2);
+  border: 1px solid rgba(228, 220, 200, 0.7);
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.upload-card:hover,
+.report-card:hover,
+.agent-tab-card:hover,
+.mock-interview-card:hover,
+.job-search-card:hover,
+.card-3d:hover {
+  box-shadow: var(--depth-shadow-hover);
+  transform: translateY(-3px) rotateX(0.6deg);
+}
+
+/* Accent top-stripe gets brighter + thicker glow on the score-style cards */
+.agent-tab-card-accent::before {
+  height: 4px;
+  background: linear-gradient(90deg, #E8B654, #3D8A77, #7563B0);
+  box-shadow: 0 2px 12px rgba(61, 122, 110, 0.35);
+}
+
+/* ---------- Buttons: brighter gradient + lift + glow ---------- */
+.upload-button,
+.agent-tab-button,
+.send-button,
+.mi-enable-button {
+  background: linear-gradient(155deg, #4F968A 0%, #3D7A6E 60%, #2A5A50 100%);
+  box-shadow: var(--glow-gold), 0 2px 0 rgba(255,255,255,0.4) inset;
+  border: 1px solid rgba(255,255,255,0.35);
+}
+
+.upload-button:hover:not(:disabled),
+.agent-tab-button:hover:not(:disabled),
+.send-button:hover:not(:disabled),
+.mi-enable-button:hover:not(:disabled) {
+  background: linear-gradient(155deg, #6BAA9D 0%, #3D8A7D 60%, #2A6358 100%);
+  box-shadow: 0 0 0 1px rgba(61,122,110,0.4), 0 14px 32px rgba(61,122,110,0.4), 0 2px 0 rgba(255,255,255,0.5) inset;
+  transform: translateY(-2px) scale(1.01);
+}
+
+.mi-stop-button {
+  background: linear-gradient(155deg, #DB7C61 0%, #C4654B 60%, #AD5640 100%);
+  box-shadow: var(--glow-teal), 0 2px 0 rgba(255,255,255,0.3) inset;
+}
+
+/* ---------- Tab rail: brighter glass + glowing active state ---------- */
+.tab-rail,
+.sidebar-nav-item.is-active {
+  box-shadow: var(--depth-shadow-2);
+}
+
+.tab-rail-item.is-active {
+  background: linear-gradient(155deg, #4F968A, #3D7A6E);
+  box-shadow: 0 0 0 1px rgba(61,122,110,0.4), 0 6px 18px rgba(61,122,110,0.45);
+}
+
+/* ---------- Sidebar (if present): glassy elevated panel ---------- */
+.sidebar {
+  background: linear-gradient(180deg, #336B60 0%, #2A5A50 100%);
+  box-shadow: 4px 0 0 rgba(255,255,255,0.04) inset, 12px 0 32px rgba(42,90,80,0.22);
+}
+
+.sidebar-nav-item.is-active {
+  background: linear-gradient(155deg, rgba(61,122,110,0.28), rgba(61,122,110,0.10));
+  box-shadow: 0 0 0 1px rgba(61,122,110,0.4), 0 4px 16px rgba(61,122,110,0.25);
+}
+
+/* ---------- Score gauge: brighter glow ring ---------- */
+.score-gauge-arc {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+/* ---------- Breakdown / DNA / Trajectory chips: glassy pop ---------- */
+.breakdown-chip,
+.dna-score-item,
+.trajectory-role-card,
+.job-listing-card,
+.chip-gold, .chip-teal, .chip-plum, .chip-clay {
+  box-shadow: var(--depth-shadow-1);
+  transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s ease;
+}
+
+.breakdown-chip:hover,
+.dna-score-item:hover,
+.trajectory-role-card:hover,
+.job-listing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--depth-shadow-hover);
+}
+
+/* ---------- Bubbles: subtle depth instead of flat fill ---------- */
+.bubble-user {
+  background: linear-gradient(155deg, #232A45, #161B2E);
+  box-shadow: var(--depth-shadow-1);
+}
+
+.bubble-agent {
+  background: linear-gradient(155deg, #EEE8FB, #E3DBF5);
+  box-shadow: var(--depth-shadow-1);
+}
+
+/* ---------- Suggestion chips: brighter on hover ---------- */
+.suggestion-chip:hover:not(:disabled) {
+  box-shadow: var(--glow-gold);
+}
+
+/* ---------- Headline glow accent ---------- */
+.app-title em,
+.hero-copy .app-title em {
+  text-shadow: 0 2px 18px rgba(61, 122, 110, 0.35);
+}
+
+/* ---------- Reduced motion respect ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .upload-card, .report-card, .agent-tab-card, .mock-interview-card,
+  .job-search-card, .card-3d, .upload-button, .agent-tab-button,
+  .send-button, .mi-enable-button {
+    transition: none !important;
+    transform: none !important;
+  }
+}
